@@ -2,31 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Lista de tarefas pessoal</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+
 </head>
 <body>
-    <h1>Bem vindo a sua lista de tarefas</h1>
-    <form action="/adicionar" method="post">
-        <div>
+    <div class="ui container" style="margin-top: 50px;">
+
+    <h1  class="ui center aligned header">Bem vindo a sua lista de tarefas</h1>
+
+    <form class="ui form" action="/adicionar" method="post">
+        <div class="field">
             <label for="title">Nome da tarefa</label>
             <input type="text" name="title" placeholder="Aguardando tarefa...">
             <br>
-            <button type="submit">Adicionar</button>
+            <button class="ui blue button" type="submit">Adicionar</button>
         </div>
     </form>
 
     {% for lista in lista_tarefas %}
-        <p>{{lista.id}} | {{lista.title}}</p>
+    <div class="ui segment">
+        <p class="ui big header">{{lista.id}} | {{lista.title}}</p>
 
         {% if lista.complete == False %}
-            <span>Incompleto</span>
+            <span class="ui gray label">Incompleto</span>
         {% else %}
-            <span>Completo</span>
+            <span class="ui green label">Completo</span>
         {% endif %}
 
-        <a href="/atualizar/{{lista.id}}">Atualizar</a>
-        <a href="/apagar/{{lista.id}}">Apagar</a>
+        <a class="ui blue button" href="/atualizar/{{lista.id}}">Atualizar</a>
+        <a class="ui red button" href="/apagar/{{lista.id}}">Apagar</a>
     {% endfor %}
+    </div>
+    </div>
 </body>
 </html>
